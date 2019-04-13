@@ -1,0 +1,408 @@
+﻿
+body {
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#ffffff;
+    background:#222 !important;
+  
+}
+
+html,body{
+ margin: 0px;
+ padding: 0px;
+}
+
+.pageContentWrapper{
+    margin-bottom:150px;/* Height of footer*/
+    
+} 
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height:150px;
+    margin-top:30px;
+    padding-top:30px;
+    padding-bottom:15px;
+    color:#fff;
+      
+}
+.site-footer{
+    background-color: #222;
+    color:#fff;
+    margin-top:30px;
+    padding-top:30px;
+    padding-bottom:15px;
+}
+html{
+    min-height:100%;
+    position: relative;
+}
+
+.balaji_logo{
+    padding: 50px 40px !important;
+    height: 20vh !important;
+    width: 20vh !important;
+}
+
+.bottom-footer{
+    border-top: 1px solid #b2b2b2;
+    margin-top:10px;
+    padding-top:10px;
+    color:#b2b2b2;
+    padding-bottom: 40px;
+}
+
+.content {
+    padding: 25px 25px;
+    margin-top: 10vh;
+    -webkit-box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
+    box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
+    border-radius: 35px 35px 35px 35px;
+    -webkit-border-radius: 35px 35px 35px 35px;
+    
+}
+.content h2 {
+    text-align: center;
+}
+
+.content li {
+    list-style: none;
+    margin: 15px 15px;
+    transition: width 2s;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+#counter-footer{
+    background-color:transparent;
+    color:#2fb5d3;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.department {
+    margin-right: 0%;
+    margin-left: 10%;
+    
+
+}
+
+.department1 li {
+    list-style: none;
+    margin: 20px 10px;
+    padding: 10px 10px;
+    display: inline-block;
+
+}
+
+.department2 li {
+    list-style: none;
+    margin: 70px 70px;
+    padding: 15px 15px;
+    display: inline-block;
+}
+
+.dropdown{
+    padding-left: 35px;
+    display : static !important;
+}
+
+
+#footer {
+    padding: 10px;
+   
+}
+
+
+#footer-template {
+    padding-top: 0px;
+    width: 100%;
+    margin-top: -280px;
+    height: 150px;
+    clear: both;
+}
+
+.footer-nav{
+    
+    text-align:right;
+    list-style:none;
+}
+
+.footer-nav li{
+    display:inline;
+}
+
+.footer-nav li a{
+    color:#ffd800;
+}
+
+.footer-nav li:not(:first-child):before
+{
+    content: '|';
+    padding:0px 10px;
+}
+
+.grid {
+    background-color:#2fb5d3;
+    border: 1px solid #000000;
+}
+
+/* Hoving effect on image with text*/
+.hvrbox,
+.hvrbox * {
+	box-sizing: border-box;
+}
+.hvrbox {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+}
+.hvrbox img {
+	max-width: 100%;
+}
+.hvrbox .hvrbox-layer_bottom {
+	display: block;
+}
+.hvrbox .hvrbox-layer_top {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	padding: 15px;
+	-moz-transition: all 0.4s ease-in-out 0s;
+	-webkit-transition: all 0.4s ease-in-out 0s;
+	-ms-transition: all 0.4s ease-in-out 0s;
+	transition: all 0.4s ease-in-out 0s;
+}
+.hvrbox:hover .hvrbox-layer_top,
+.hvrbox.active .hvrbox-layer_top {
+	opacity: 1;
+}
+.hvrbox .hvrbox-text {
+	text-align: center;
+	font-size: 18px;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.hvrbox .hvrbox-text_mobile {
+	font-size: 15px;
+	border-top: 1px solid rgb(179, 179, 179); /* for old browsers */
+	border-top: 1px solid rgba(179, 179, 179, 0.7);
+	margin-top: 5px;
+	padding-top: 2px;
+	display: none;
+}
+
+
+.hvrbox.active .hvrbox-text_mobile {
+	display: block;
+}
+
+/*--------------------------------------------------------------------*/
+.info {
+    font-size:20px;
+}
+
+.icons li{
+    display: inline;
+    
+}
+
+.icons li a{
+    
+    color:#fff;
+    list-style: none;
+    
+}
+
+#image_button{
+    color: #f5f5f5 !important;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+}
+
+#imagelogo {
+    height: 40vw;
+    background-position: center;
+    padding: 30px 30px;
+    margin-top: 10vh;
+    width: 100%;
+    
+    -webkit-box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
+    box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
+    border-radius: 35px 35px 35px 35px;
+    -webkit-border-radius: 35px 35px 35px 35px;
+    border: 2px solid #000000;
+}
+#image img{
+    width:100%;
+    height:200px !important;
+}
+
+.img{
+    border-radius:10px !important;
+    
+}
+
+.label{
+    border-radius: 10px;
+}
+
+.info {
+    font-size:20px;
+}
+
+.modelImage{
+    height:20vh !important;
+    width: 30vh !important;
+}
+
+.navbar{
+    position:absolute;
+    width:100%;
+    z-index:10;
+    max-width:100%;
+    min-height: 80px;
+}
+
+#main {
+    min-height:100%;
+    overflow: auto;
+    padding-bottom: 200px;
+}
+
+#map {
+    
+    height: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.navbar{
+    height:60px;
+}
+
+.parallax {
+    background-image: url('/images/blog-1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 250px; 
+}
+#panel{
+    background-color:transparent;
+    border:none !important;
+    border-color:#fff;
+}
+#panel{
+    
+    
+    box-shadow:none !important;
+}
+
+select{
+    color: #000000;
+    
+}
+#panel-heading {
+    background: #222;
+    color:#ffffff;
+}
+
+#panel p{
+    font-size: 20px;
+
+}
+
+#project-label{
+    height:50px;
+}
+
+#project{
+    background-color:aqua;
+    min-height:100%;
+}
+
+#project_menu{
+    background-color: transparent;
+}
+#right-image1 {
+    padding-top: 30px !important;
+    height: 30vh !important;
+    width: 30vh !important;
+}
+
+#right-image2 {
+    padding-top:70px !important;
+    height: 30vh !important;
+    width: 30vh !important;
+
+}
+
+#recent-text {
+    color: #222;
+}
+
+.row1{
+    width:100% !important;
+}
+
+table.table-bordered{
+    border:transparent;
+    margin-top:20px;
+  }
+table.table-bordered  tr  th{
+    border:transparent;
+}
+table.table-bordered tr td{
+    border:transparent;
+}
+
+.thumbnail {
+    border-style: ridge;
+    border-color: #b2b2b2;
+    border-width: 4px;
+}
+
+.well{
+    background: #222;
+    color: #ffffff;
+}
+#wrap{
+    min-height:100%;
+}
+#welcome-image{
+    height: 100%;
+    
+}
+.what{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+
+
