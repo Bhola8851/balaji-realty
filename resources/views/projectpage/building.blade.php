@@ -2,20 +2,20 @@
 
 @section('content')
 
-    
+
     <div class="container">
         @include('inc.messages')
         <br/>
         <div class="well">
             <h1 align=center>Projects</h1>
-        </div>  
+        </div>
             <div style="background:transparent">
                 {!! Form::open(['action'=>'ProjectController@index','method'=>'POST','enctype' => 'multipart/form-data']) !!}
                 {!! csrf_field() !!}
                 <div class="row">
                     <div class="col-md-2 offset-md-10">
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Projects
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Flats
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                             <li><a href="bungalow">Bungalow</a></li>
@@ -28,8 +28,8 @@
                     </div>
                 </div>
                 {!! Form::close() !!}
-                
-                
+
+
                 <br/>
                 <div class="row">
                     <div class="col-md-12">
@@ -43,14 +43,14 @@
                                 <div class="row" id="div">
                                     @if (count($project_data) > 0)
                                         @foreach ($project_data as $item)
-                                        
+
                                             <div class="col-md-4">
                                                 <div class="card" id="panel" >
                                                     <div class="hvrbox">
                                                         <img class="img-fluid menu-thumbnails card-img-top" src="{{ asset('img/cover/'.$item->cover_image) }}"/>
                                                         <div class="hvrbox-layer_top">
                                                             <div class="hvrbox-text">{{$item -> deal_type}}<br/><a href="/project/{{$item -> id}}" class="btn btn-default" id="image_button">View Detail</a></div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                     <div class="card-body">
@@ -61,7 +61,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         @endforeach
                                     @else
                                         <p>No post Found</p>

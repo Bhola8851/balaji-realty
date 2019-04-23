@@ -18,7 +18,7 @@
 
                                     <div class="card-tools">
                                     <button class="btn btn-success" @click="newModal">
-                                        Add New Material 
+                                        Add New Material
                                         <i class="fas fa-user-plus fa-fw"></i>
                                         </button>
                                     </div>
@@ -54,9 +54,9 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    
+
                                     </tbody>
-                                    
+
                                     </table>
                                 </div>
                                 <div class="card-footer">
@@ -71,7 +71,7 @@
 
                                     <div class="card-tools">
                                     <button class="btn btn-success" @click="newModal">
-                                        Add New Material 
+                                        Add New Material
                                         <i class="fas fa-user-plus fa-fw"></i>
                                         </button>
                                     </div>
@@ -107,9 +107,9 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    
+
                                     </tbody>
-                                    
+
                                     </table>
                                 </div>
                                 <div class="card-footer">
@@ -119,15 +119,15 @@
                             </div>
                         </div>
                     </div>
-              </div>    
+              </div>
             <!-- /.card -->
           </div>
         </div>
           <div v-if="!$gate.isAdminOrSupplier()">
             <not-found></not-found>
           </div>
-        
-        
+
+
         <!-- Modal -->
         <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,7 +142,7 @@
                     <form @submit.prevent="editmode ? updateUser() : createUser()">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>Material</label>
+                                <label>Material<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.material" type="text" name="material"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('material') }"
                                     v-validate="'required'">
@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Brand</label>
+                                <label>Brand<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.brand" type="text" name="brand"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('brand') }"
                                     v-validate="'required'">
@@ -160,7 +160,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Quantity</label>
+                                <label>Quantity(in kg)<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.quantity" type="text" name="quantity"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('quantity') }"
                                     v-validate="'required|max_value:100'">
@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Price(per quantity)</label>
+                                <label>Price(per quantity)<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.price" type="text" name="price"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('price') }"
                                     v-validate="'required|max_value:10000'">
@@ -177,9 +177,9 @@
                                 <has-error :form="form" field="price"></has-error>
                             </div>
 
-                            
+
                             <div class="form-group">
-                                <label>Description(optional)</label>
+                                <label>Description<i class="fas fa-asterisk red"></i></label>
                                 <textarea v-model="form.description" type="text" name="description"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('description') }"
                                     v-validate="'required|max:300'"></textarea>
@@ -188,11 +188,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Status</label>
+                                <label>Status<i class="fas fa-asterisk red"></i></label>
                                 <select v-model="form.status" id="type" name="status"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('status') }"
-                                    v-validate="'required'">
-                                    
+                                    v-validate="'required|included:Available,Not Available'">
+
                                     <option value="Available">Available</option>
                                     <option value="Not Available">Not Available</option>
                                 </select>
@@ -200,9 +200,9 @@
                                 <has-error :form="form" field="status"></has-error>
                             </div>
 
-                            
+
                         </div>
-                    
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
@@ -212,7 +212,7 @@
                 </div>
             </div>
         </div>
-    
+
 </div>
 </template>
 
@@ -237,15 +237,15 @@
             }
         },
         methods: {
-            
+
             loadUsers(){
-                
-                    
+
+
                     //it will fetch data into data and then to the users object
-                    
+
                     axios.get("api/materials")
                     .then(response => {this.supplies = response.data.materials,this.users = response.data.users});
-                
+
             },
             createUser(){
                 this.$validator.validateAll()
@@ -261,16 +261,16 @@
                                     type: 'success',
                                     title: 'Supplies Created successfully'
                                 });
-                                this.$Progress.finish();  
+                                this.$Progress.finish();
                             })
                             .catch(() => {
-                                
-                            }) 
+
+                            })
                         }
                         else{
                             console.log(this.$validator);
                         }
-                    
+
                 })
                 .catch(()=>{
                     console.log("Please Validate")
@@ -291,23 +291,23 @@
                         //send delete request to the server
                         this.form.delete('api/materials/'+id)
                             .then(()=>{
-                                
+
                                     sweetAlert.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
                                     'success'
                                     )
-                                
+
                                 Fire.$emit('AfterCreate');
-                            
+
                             })
                             .catch(()=>{
-                            
+
                             sweetAlert.fire("Failed!","There was something wrong","warning");
-                            });  
+                            });
                         }
-                        
-                })  
+
+                })
             },
             updateUser(){
                 this.$Progress.start();
@@ -344,7 +344,7 @@
                         this.supplies = response.data;
                     });
             }
-            
+
         },
         created() {
             Fire.$on('searching',() => {
@@ -358,7 +358,7 @@
             });
             this.loadUsers();
             Fire.$on('AfterCreate', () => {
-                
+
                 this.loadUsers();
                 });
             //setInterval(() => this.loadUsers(),3000);

@@ -8,7 +8,7 @@
 
                 <div class="card-tools">
                   <button class="btn btn-success" @click="newModal">
-                      Add New Supplies 
+                      Add New Supplies
                       <i class="fas fa-user-plus fa-fw"></i>
                     </button>
                 </div>
@@ -30,7 +30,7 @@
                     <td>{{supply.quantity}}</td>
                     <td>{{supply.price}}</td>
                     <td>{{supply.date | myDate}}</td>
-                    
+
                     <td>
                         <a href="#" @click="editModal(supply)">
                             <i class="fa fa-edit blue"></i>
@@ -41,9 +41,9 @@
                         </a>
                     </td>
                   </tr>
-                  
+
                 </tbody>
-                
+
                 </table>
               </div>
               <div class="card-footer">
@@ -53,7 +53,7 @@
             <!-- /.card -->
           </div>
         </div>
-        
+
         <!-- Modal -->
         <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -74,8 +74,8 @@
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('user_id') }"
                                     v-validate="'required'">
                                         <option disabled selected value>Select an Supplier</option>
-                                        <option v-for="user in users" :key="user.id" :value="user.id" v-if="user.type == 'Supplier'" >{{user.type}}::{{user.name}}</option>    
-                                                            
+                                        <option v-for="user in users" :key="user.id" :value="user.id" v-if="user.type == 'Supplier'" >{{user.type}}::{{user.name}}</option>
+
                                 </select>
                                 <span class="red">{{ errors.first('user_id') }}</span>
                                 <has-error :form="form" field="user_id"></has-error>
@@ -86,11 +86,11 @@
                                 <select v-model="form.material"  id="material" name="material"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('material') }"
                                     v-validate="'required'">
-                                        
+
                                         <option disabled selected value>Select a Material</option>
-                                        <option v-for="material in materials" :key="material.id" :value="material.material" 
-                                                v-if="material.user_id == form.user_id" >{{material.material}}</option>    
-                                    
+                                        <option v-for="material in materials" :key="material.id" :value="material.material"
+                                                v-if="material.user_id == form.user_id" >{{material.material}}</option>
+
                                 </select>
                                 <span class="red">{{ errors.first('material') }}</span>
                                 <has-error :form="form" field="material"></has-error>
@@ -101,11 +101,11 @@
                                 <select v-model="form.brand"  id="brand" name="brand"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('brand') }"
                                     v-validate="'required'">
-                                        
+
                                         <option disabled selected value>Select a Material Brand</option>
-                                        <option v-for="material in materials" :key="material.id" :value="material.brand" 
-                                                v-if="material.user_id == form.user_id && material.material == form.material" >{{material.brand}}</option>    
-                                    
+                                        <option v-for="material in materials" :key="material.id" :value="material.brand"
+                                                v-if="material.user_id == form.user_id && material.material == form.material" >{{material.brand}}</option>
+
                                 </select>
                                 <span class="red">{{ errors.first('brand') }}</span>
                                 <has-error :form="form" field="brand"></has-error>
@@ -125,11 +125,11 @@
                                 <select v-model="form.price"  id="price" name="price"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('price') }"
                                     v-validate="'required'">
-                                        
+
                                         <option disabled selected value>Select a Material Price</option>
-                                        <option v-for="material in materials" :key="material.id" :value="material.brand" 
-                                                v-if="material.user_id == form.user_id && material.material == form.material" >{{material.price}}</option>    
-                                    
+                                        <option v-for="material in materials" :key="material.id" :value="material.brand"
+                                                v-if="material.user_id == form.user_id && material.material == form.material" >{{material.price}}</option>
+
                                 </select>
                                 <span class="red">{{ errors.first('price') }}</span>
                                 <has-error :form="form" field="price"></has-error>
@@ -143,16 +143,16 @@
                                 <span class="red">{{ errors.first('address') }}</span>
                                 <has-error :form="form" field="address"></has-error>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Date<i class="fas fa-asterisk red"></i></label>
                                 <datetime type="date" v-model="form.date" name="date"
                                      :class="{ 'is-invalid': form.errors.has('date') }"
-                                     v-validate="'required'"></datetime>
+                                     v-validate="'required'" :min-datetime="current_date3"></datetime>
                                 <span class="red">{{ errors.first('date') }}</span>
                                 <has-error :form="form" field="date"></has-error>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Description<i class="fas fa-asterisk red"></i></label>
                                 <textarea v-model="form.description" type="text" name="description"
@@ -167,7 +167,7 @@
                                 <select v-model="form.status" id="type" name="status"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('status') }"
                                     v-validate="'required'">
-                                    
+
                                     <option value="Running">Running</option>
                                     <option value="Completed">Completed</option>
                                 </select>
@@ -175,9 +175,9 @@
                                 <has-error :form="form" field="status"></has-error>
                             </div>
 
-                            
+
                         </div>
-                    
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
@@ -195,6 +195,7 @@
         data(){
             return{
                 editmode: false,
+                current_date3 : new Date().toISOString(),
                 users : [],
                 supplies : [],
                 materials : [],
@@ -214,19 +215,19 @@
             }
         },
         methods: {
-            
+
             loadUsers(){
-                
-                    
+
+
                     //it will fetch data into data and then to the users object
-                    
+
                     axios.get("api/suppliers")
                     .then(response => {this.supplies = response.data.supplies,
                         this.users = response.data.users,
                         this.materials = response.data.materials,
                         this.current_user = response.data.current_user
                         });
-                
+
             },
             createUser(){
                 this.$validator.validateAll()
@@ -242,22 +243,22 @@
                                     type: 'success',
                                     title: 'Supplies Created successfully'
                                 });
-                                this.$Progress.finish();  
+                                this.$Progress.finish();
                             })
                             .catch(() => {
-                                
-                            }) 
+
+                            })
                         }
                         else{
                             console.log(this.$validator);
                         }
-                    
+
                 })
                 .catch(()=>{
                     console.log("Please Validate")
                 })
-                
-                
+
+
             },
             deleteUser(id){
                 sweetAlert.fire({
@@ -274,23 +275,23 @@
                         //send delete request to the server
                         this.form.delete('api/suppliers/'+id)
                             .then(()=>{
-                                
+
                                     sweetAlert.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
                                     'success'
                                     )
-                                
+
                                 Fire.$emit('AfterCreate');
-                            
+
                             })
                             .catch(()=>{
-                            
+
                             sweetAlert.fire("Failed!","There was something wrong","warning");
-                            });  
+                            });
                         }
-                        
-                })  
+
+                })
             },
             updateUser(){
                 this.$Progress.start();
@@ -327,7 +328,7 @@
                         this.users = response.data;
                     });
             }
-            
+
         },
         created() {
             Fire.$on('searching',() => {
@@ -346,7 +347,7 @@
             });
             this.loadUsers();
             Fire.$on('AfterCreate', () => {
-                
+
                 this.loadUsers();
                 });
             //setInterval(() => this.loadUsers(),3000);

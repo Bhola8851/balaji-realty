@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
        <div class="ro">
             <!--<div id="imageCarousel" class="carousel slide carousel-fade col-md-12" data-wrap="true" data-pause="false" data-interval="2000">
                 <ol class="carousel-indicators">
@@ -17,7 +17,7 @@
                     <div class="item">
                         <img src="/images/img-2.jpg" class="img-responsive" />
                         <div class="carousel-caption">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                 </a>
             </div>-->
             <div  class="carousel fade-carousel carousel-fade slide" data-ride="carousel" data-interval="3000" id="bs-carousel">
-                    
+
                     <div class="overly"></div>
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
@@ -37,42 +37,42 @@
                       <li data-target="#bs-carousel" data-slide-to="1"></li>
                       <li data-target="#bs-carousel" data-slide-to="2"></li>
                     </ol>
-                    
+
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item active item slides">
                             <div class="slide-1"></div>
                             <div class="hero">
                                 <hgroup>
-                                    <h1>We are creative</h1>        
+                                    <h1>We are creative</h1>
                                     <h3>Get start your next awesome project</h3>
                                 </hgroup>
                                 <a class="btn btn-hero btn-lg" href={{'/project'}}>See More</a>
                             </div>
                         </div>
-                        
+
                         <div class="carousel-item item slides">
                             <div class="slide-2"></div>
-                            <div class="hero">        
+                            <div class="hero">
                                 <hgroup>
-                                    <h1>We are smart</h1>        
+                                    <h1>We are smart</h1>
                                     <h3>Get start your next awesome project</h3>
-                                </hgroup>       
+                                </hgroup>
                                 <a class="btn btn-hero btn-lg" href={{'/project'}}>See More</a>
                             </div>
                         </div>
                         <div class="carousel-item item slides">
                             <div class="slide-3"></div>
-                            <div class="hero">        
+                            <div class="hero">
                                 <hgroup>
-                                    <h1>We are amazing</h1>        
+                                    <h1>We are amazing</h1>
                                     <h3>Get start your next awesome project</h3>
                                 </hgroup>
                                 <a class="btn btn-hero btn-lg" href={{'/project'}}>See More</a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#bs-carousel" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
@@ -81,20 +81,20 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
             </div>
-                  
+
         </div>
-    
-    <div class="container"> 
+
+    <div class="container">
         <!-- Who we are -->
         <br />
-       
+
             <div class="row">
                 <div class="col-md-6">
-                    
+
                     <div class="hvrbox">
                         <img src="/images/img_bg_2.jpg" alt="Mountains" class="img hvrbox-layer_bottom img-responsive">
                         <div class="hvrbox-layer_top">
-                            <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                            <div class="hvrbox-text">Click for more Projects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
                         </div>
                     </div>
                 </div>
@@ -161,10 +161,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div id="text-left">
-                                            
+
                                             <h3><i class="fas fa-city"></i> Houses &amp; Gala </h3>
                                             <p>we make the houses and shop galas for you at decent ocation. </p>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -172,11 +172,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div id="right-image1 " class="col-md-12">
-                                                
+
                                                 <div class="hvrbox modelImage">
                                                     <img src="/images/bg_3.jpg" alt="Construction"  class="img hvrbox-layer_bottom img-responsive img-fluid what">
                                                     <div class="hvrbox-layer_top">
-                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/about_us" class="btn btn-default" id="image_button">See More</a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,7 +184,7 @@
                                                 <div class="hvrbox modelImage">
                                                     <img src="/images/Bungalow.jpg"  alt="Bungalow" class="img hvrbox-layer_bottom img-responsive img-fluid what">
                                                     <div class="hvrbox-layer_top">
-                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/about_us" class="btn btn-default" id="image_button">See More</a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,7 +203,7 @@
                                                 <div class="hvrbox modelImage img-fluid">
                                                     <img src="/images/blog-1.jpg" alt="blog-1"  class="img hvrbox-layer_bottom img-responsive img-fluid what">
                                                     <div class="hvrbox-layer_top">
-                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/about_us" class="btn btn-default" id="image_button">See More</a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,7 +211,7 @@
                                                 <div class="hvrbox modelImage img-fluid">
                                                     <img src="/images/blog-2.jpg" alt="blog-2"  class="img hvrbox-layer_bottom img-responsive img-fluid what">
                                                     <div class="hvrbox-layer_top">
-                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                        <div class="hvrbox-text">View More<br/><a type="button" href="/about_us" class="btn btn-default" id="image_button">See More</a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -237,8 +237,8 @@
             <!-- Counters -->
             <div style="background-image: url(/images/cover_bg_1.jpg)">
                 <div class="row">
-                    
-                        
+
+
                         <div class="col-md-4">
                             <div class="card" id="panel">
                                 <div class="card-body" id="counter-card-body">
@@ -269,8 +269,8 @@
 
                             </div>
                         </div>
-                        
-                    
+
+
 
                 </div>
             </div>
@@ -292,48 +292,48 @@
                                         <div class="hvrbox">
                                             <img class="card-img-top img-fluid hvrbox-layer_bottom img-responsive" src="/images/RecentBuilding.jpg" alt="Card image cap">
                                             <div class="hvrbox-layer_top">
-                                                <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                <div class="hvrbox-text">Click for more Building Projects<br/><a type="button" href="flat" class="btn btn-default" id="image_button">See More</a></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">Building</h5>
+                                            <h5 class="card-title">Flats</h5>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="/project" class="btn btn-primary">view more</a>
+                                            <a href="flat" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card" id="panel">
                                         <div class="hvrbox">
                                             <img class="card-img-top img-fluid hvrbox-layer_bottom img-responsive" src="/images/RecentHouse.jpg" alt="Card image cap">
                                             <div class="hvrbox-layer_top">
-                                                <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                <div class="hvrbox-text">Click for more House Projects<br/><a type="button" href="house" class="btn btn-default" id="image_button">See More</a></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Houses</h5>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="/project" class="btn btn-primary">view more</a>
+                                            <a href="house" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card" id="panel">
                                         <div class="hvrbox">
                                             <img class="card-img-top img-fluid hvrbox-layer_bottom img-responsive" src="/images/RecentBungalow.jpg" alt="Card image cap">
                                             <div class="hvrbox-layer_top">
-                                                <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                <div class="hvrbox-text">Click for more Bungalow Projects<br/><a type="button" href="bungalow" class="btn btn-default" id="image_button">See More</a></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Bungalow</h5>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="/project" class="btn btn-primary">view more</a>
+                                            <a href="bungalow" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                             </div>
 
@@ -345,23 +345,23 @@
                                         <div class="hvrbox" >
                                             <img class="card-img-top hvrbox-layer_bottom img-responsive" src="/images/RecentLand.jpeg" alt="Card image cap">
                                             <div class="hvrbox-layer_top">
-                                                <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                                <div class="hvrbox-text">Click for more Land Projects<br/><a type="button" href="land" class="btn btn-default" id="image_button">See More</a></div>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Land</h5>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="/project" class="btn btn-primary">view more</a>
+                                            <a href="land" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card" id="panel">
                                         <div class="hvrbox">
                                         <img class="card-img-top hvrbox-layer_bottom img-responsive" src="/images/services-4.jpg" alt="Card image cap">
                                         <div class="hvrbox-layer_top">
-                                            <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                            <div class="hvrbox-text">Click for more Projects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
                                         </div>
                                         </div>
                                         <div class="card-body">
@@ -370,14 +370,14 @@
                                             <a href="/project" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card" id="panel">
                                         <div class="hvrbox">
                                         <img class="card-img-top hvrbox-layer_bottom img-responsive" src="/images/services-5.jpg" alt="Card image cap">
                                         <div class="hvrbox-layer_top">
-                                            <div class="hvrbox-text">Click for more Pojects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
+                                            <div class="hvrbox-text">Click for more Projects<br/><a type="button" href="/project" class="btn btn-default" id="image_button">See More</a></div>
                                         </div>
                                         </div>
                                         <div class="card-body">
@@ -386,7 +386,7 @@
                                             <a href="/project" class="btn btn-primary">view more</a>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                             </div>
                         </div>
@@ -395,5 +395,5 @@
             </div>
     </div>
 
-        
+
 @endsection

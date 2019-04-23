@@ -8,10 +8,10 @@
 
                 <div class="card-tools" v-if="$gate.isAdmin()">
                   <button class="btn btn-success" @click="newModal">
-                      Add New User 
+                      Add New User
                       <i class="fas fa-user-plus fa-fw"></i>
                     </button>
-                    
+
                 </div>
               </div>
               <!-- /.card-header -->
@@ -36,7 +36,7 @@
                     <td v-if="user.isOnline" class="label btn-success">Online</td>
                     <td v-if="!user.isOnline" class="label btn-danger">Offline</td>
                     <td>{{user.created_at | myDate}}</td>
-                    
+
                     <td v-if="$gate.isAdmin()">
                         <a href="#" @click="updateStatusModal(user)">
                             <i class="fa fa-exclamation-circle orange"></i>
@@ -51,7 +51,7 @@
                         </a>
                     </td>
                   </tr>
-                  
+
                 </tbody></table>
               </div>
               <!--<div class="card-footer">
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div v-if="!$gate.isAdminOrEmployee()">
-            
+
             <not-found></not-found>
         </div>
         <!-- Modal -->
@@ -132,17 +132,17 @@
                                 <select v-model="form.gender" id="gender" name="gender"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('gender') }"
                                     v-validate="'required|included:male,female'" data-vv-as="selected">
-                                    
+
                                     <option value="male">male</option>
                                     <option value="female">female</option>
-                                    
+
                                 </select>
                                 <span class="red" v-show="errors.has('gender')">{{ errors.first('gender') }}</span>
                                 <has-error :form="form" field="gender"></has-error>
                             </div>
 
-                            
-                            
+
+
                             <div class="form-group">
                                 <label>Description<i class="fas fa-asterisk red"></i></label>
                                 <textarea v-model="form.bio" type="text" name="bio"
@@ -156,8 +156,8 @@
                                 <label>User Role<i class="fas fa-asterisk red"></i></label>
                                 <select v-model="form.type" id="type" name="type"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('type') }"
-                                    v-validate="'required'">
-                                    
+                                    v-validate="'required|included:Admin,Employee,Agent,Supplier'">
+
                                     <option value="Admin">Admin</option>
                                     <option value="Employee">Employee</option>
                                     <option value="Agent">Agent</option>
@@ -176,7 +176,7 @@
                                 <has-error :form="form" field="password"></has-error>
                             </div>
                         </div>
-                    
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button v-show="editmode"  type="submit" class="btn btn-success">Update</button>
@@ -194,7 +194,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addNewLabel">User Info</h5>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -202,7 +202,7 @@
                         <div class="modal-body">
                             <!--Profile Table-->
                             <table class="table table-bordered mt-3">
-                                            
+
                                 <tr>
                                     <th>Profile Picture</th>
                                     <td>
@@ -238,7 +238,7 @@
                                 <tr>
                                     <th>Address</th>
                                     <td>{{user.address}}</td>
-                                    
+
                                 </tr>
                             </table>
 
@@ -246,7 +246,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -265,7 +265,7 @@
                     </div>
                     <form @submit.prevent="updateUser()">
                         <div class="modal-body">
-                            
+
 
                             <div class="form-group">
                                 <label>Status</label>
@@ -274,17 +274,17 @@
                                     <option disabled value>Change the status</option>
                                     <option value="Active">Active</option>
                                     <option value="Banned">Banned</option>
-                                    
+
                                 </select>
                                 <has-error :form="form" field="status"></has-error>
                             </div>
-                            
+
                         </div>
-                    
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
                             <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                            
+
                         </div>
                     </form>
                 </div>
@@ -297,7 +297,7 @@
     export default {
         data(){
             return{
-                max_date : '2001-01-01T14:58Z',
+                max_date : '2001-04-26T00:58Z',
                 editmode: false,
                 users : [],
                 user:[],
@@ -318,22 +318,22 @@
             }
         },
         methods: {
-            
+
             loadUsers(){
                 if (this.$gate.isAdminOrEmployee()) {
-                    
+
                     //it will fetch data into data and then to the users object
                     axios.get("api/users").then(response => {this.users = response.data.users});
-                    
+
                 }
             },
             getProfilePhoto(){
                 let photo ="./img/profile/"+ this.user.photo ;
                 return photo;
             },
-            
+
             createUser(){
-                
+
                 this.$validator.validateAll()
                     .then((result) => {
                         if(result){
@@ -347,22 +347,22 @@
                                     type: 'success',
                                     title: 'User Created successfully'
                                 });
-                                this.$Progress.finish();  
+                                this.$Progress.finish();
                             })
                             .catch(() => {
-                                
-                            }) 
+
+                            })
                         }
                         else{
                             console.log(this.$validator);
                         }
-                    
+
                 })
                 .catch(()=>{
                     console.log("Please Validate")
                 })
-                
-                
+
+
             },
             deleteUser(id){
                 sweetAlert.fire({
@@ -379,26 +379,26 @@
                         //send delete request to the server
                         this.form.delete('api/users/'+id)
                             .then(()=>{
-                                
+
                                     sweetAlert.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
                                     'success'
                                     )
-                                
+
                                 Fire.$emit('AfterCreate');
-                            
+
                             })
                             .catch(()=>{
-                            
+
                             sweetAlert.fire("Failed!","There was something wrong","warning");
-                            });  
+                            });
                         }
-                        
-                })  
+
+                })
             },
             updateUser(){
-                
+
                 this.$Progress.start();
 
                 this.form.put('api/users/'+this.form.id)
@@ -446,10 +446,10 @@
                         this.users = response.data;
                     });
             },
-            
+
         },
         created() {
-            
+
 
             Fire.$on('searching',() => {
                 console.log('searching');
@@ -464,7 +464,7 @@
             });
             this.loadUsers();
             Fire.$on('AfterCreate', () => {
-                
+
                 this.loadUsers();
                 });
             //setInterval(() => this.loadUsers(),3000);

@@ -3,45 +3,43 @@
 @section('content')
 <br/><br/>
 <div class="container">
-    
+
     <div class="row">
         <div class="col-md-4">
-                <a href="/project" class="btn btn-primary">Go Back</a> 
+                <a href="/project" class="btn btn-primary">Go Back</a>
         </div>
     </div>
-    <br>
     <div class="row">
         <div class="col-md-12">
-            <h1 align='center' class="">{{$project_data -> deal_type}}</h1>
+            <div align='center' style="font-size:500%" class="">{{$project_data -> deal_type}}</div>
         </div>
     </div>
-    <hr><br>
+    <hr>
     <div class="row">
-        
-        <div class="col-md-6  mt-5">
-            <!-- For image-->
-            <img class="img-responsive img-fluid" src="{{asset('img/cover/'.$project_data->cover_image)}}" alt="abc"  style="height:50vh; width:50vh;">
+        <div class="col-md-6  mt-4">
+            <!-- For image--><br><br>
+            <img class="img-responsive img-fluid img-rounded" src="{{asset('img/cover/'.$project_data->cover_image)}}" alt="abc"  style="height:50vh; width:50vh;">
 
         </div>
         <!-- for Data -->
         <div class="col-md-6">
-            <div class="card panel-default" id="panel">
+            <div class="card panel-default mb-4" id="panel">
                 <div class="card-header panel-title" id="panel-heading">
-                    <h1 class="h1"><strong> {{$project_data -> title}}</strong></h1>
+                    <h2 class="h2" align="center"><strong> {{$project_data -> title}}</strong></h2>
                 </div>
                 <div class="card-body row" id="panel">
                     <div class="col-md-12">
-                        <p class="h3"><strong>Location : {{ $project_data -> location }}</strong></p>
-                        <p class="h3">Price : <span class="h5">{{ $project_data -> price }}Lakhs</span> </hp> <br/>   
-                    </div> 
-                    <div class="col-md-12">
-                        <p class="h2">Description:</p>
-                        <p>{{ $project_data -> description }}</p><br/>
+                        <h5 align="center">Location :{{ $project_data -> location }}</h5><hr><br/>
+                        <h5>Price : {{ $project_data -> price }} Lakhs<h5>  <br/>
                     </div>
                     <div class="col-md-12">
-                        <p class="h3"><strong class="h3">Address :</strong> </p>
-                        <p>{{ $project_data -> address }}</p>
+                        <h5>Address :</h5>
+                        <h5>{{ $project_data -> address }}</h5>
                         <hr>
+                    </div>
+                    <div class="col-md-12">
+                        <h5>Description:</h5>
+                        <h5>{{ $project_data -> description }}</h5><br>
                     </div>
                 </div>
                 <div class="card-footer" id="panel">
@@ -49,8 +47,8 @@
                 </div>
             </div>
         </div>
-        
-            
+
+
         </div>
         <div class="row">
             <div class="col-md-12">
