@@ -33,7 +33,7 @@
                         <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
-                    
+
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <div class="description-block">
@@ -70,13 +70,13 @@
                                         <h3 class="card-title">Completed Task</h3>
 
                                         <div class="card-tools">
-                                        
+
                                         </div>
                                     </div>
-                                    
+
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0">
-                                        <form @submit.prevent="updateUser()">  
+                                        <form @submit.prevent="updateUser()">
                                         <table class="table table-hover">
                                             <tbody><tr>
                                                 <th>Task ID</th>
@@ -88,7 +88,7 @@
                                                 <th>Date</th>
                                                 <th>Status</th>
                                             </tr>
-                                            
+
                                             <tr v-for="task in agent_task" :key="task.id" v-if="task.status = 'Completed'">
                                                 <td>{{task.id}}</td>
                                                 <td><a href="#" @click="showModal(task.id)">{{task.title}}</a></td>
@@ -99,13 +99,13 @@
                                                 <td>{{task.date | myDateTime()}}</td>
                                                 <td><span  class="badge badge-primary ">{{task.status}}</span></td>
                                             </tr>
-                                        
+
                                         </tbody>
                                         </table>
                                         </form>
                                     </div>
                                     <div class="card-footer">
-                                        
+
                                     </div>
                                     <!-- /.card-body -->
                                     </div>
@@ -149,7 +149,7 @@
                                         :class="{ 'is-invalid': form.errors.has('dob') }" v-validate="'required'"
                                         :max-datetime="max_date"></datetime>
                                         <span class="red">{{ errors.first('dob') }}</span>
-                                        
+
                                         <has-error :form="form" field="dob"></has-error>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addNewLabel">Task Info</h5>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -224,13 +224,13 @@
                         <div class="modal-body">
                             <!--Profile Table-->
                             <table class="table table-bordered mt-3">
-                                            
-                                
+
+
                                 <tr>
                                     <th>Title</th>
                                     <td>{{task.title}}</td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>Address</th>
                                     <td>{{task.address}}</td>
@@ -250,7 +250,7 @@
                                 <tr>
                                     <th>Address</th>
                                     <td>{{task.address}}</td>
-                                    
+
                                 </tr>
                             </table>
 
@@ -258,12 +258,12 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
-                   
+
                 </div>
             </div>
         </div>
         </div>
-        
+
     </div>
 </template>
 
@@ -274,9 +274,9 @@
         data(){
             return {
                 current_date1 : Date.now(),
-               
+
                 dob : '',
-                max_date : '2001-01-01T14:58Z',
+                max_date : '2001-04-26T12:58Z',
                 current_date : new Date("2015-03-25T12:00:00Z"),
                 projects : [],
                 count : [],
@@ -322,12 +322,12 @@
             },
             loadTasks(){
                 //it will fetch data into data and then to the users object
-                
+
                 axios.get("api/task")
                 .then(response => {this.agent_task = response.data.agent_task,this.users = response.data.users});
             },
             updateInfo(){
-                
+
                 this.$Progress.start();
                 if(this.form.password == ''){
                     this.form.password = undefined;
@@ -357,7 +357,7 @@
                     this.form.photo = reader.result;
                     }
                     reader.readAsDataURL(file);
-                        
+
                 }
                 else{
                     sweetAlert.fire({
@@ -368,19 +368,19 @@
                     document.getElementById("photo").value = "";
                     return false;
                 }
-                
-                
-                
-                
+
+
+
+
             },
             showModal(id){
                 console.log(id);
                 axios.get("api/agents/"+id).then(response => {this.task = response.data.task});
-                
+
                 $('#showTask').modal('show');
             },
         },
-        
+
         created() {
             Fire.$on('searching',() => {
                 console.log('searching');

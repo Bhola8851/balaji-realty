@@ -22,7 +22,7 @@ class AgentController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -30,18 +30,18 @@ class AgentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        
+    {
+
             $users = User::all();
             $agent_task = Task::with('user')->get();
-        
-        
+
+
         return response()->json([
             'agent_task' => $agent_task,
             'users' => $users,
         ], 200);
-        
-        
+
+
     }
 
     /**
@@ -52,7 +52,7 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $this->validate($request,[
             'user_id' => 'required',
             'title' => 'required',
@@ -71,10 +71,10 @@ class AgentController extends Controller
             'description' => $request['description'],
             'date' => $request['date'],
             'status' => $request['status'],
-            
+
         ]);
         $data = $task;
-        Mail::to('bholasinghbunty@gmail.com')->send(new TaskCreateMailToAdmin($data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new TaskCreateMailToAdmin($data));
         return ['message' => 'Created the task info'];
     }
 
@@ -87,17 +87,17 @@ class AgentController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-     
+
         return response()->json([
             'task' => $task,
-            
-            
+
+
         ], 200);
     }
 
     public function task()
     {
-        
+
       $users = Auth::user();
       $user_id =$users->id;
         $agent = Task::with('user')->get();
@@ -105,9 +105,9 @@ class AgentController extends Controller
         return response()->json([
             'agent_task' => $agent_task,
             'users' => $users,
-            
+
         ], 200);
-     
+
     }
 
     /**
@@ -119,36 +119,36 @@ class AgentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $user = auth('api')->user();
-        
+
         $agent = Task::findOrFail($id);
         $this->validate($request,[
             'user_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            
+
             'customer_phone' => 'required',
             'date' => 'required',
             'address' => 'required|string|max:191'
         ]);
         $agent->update($request->all());
         $data = $agent;
-        Mail::to('bholasinghbunty@gmail.com')->send(new TaskUpdateMailToAdmin($data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new TaskUpdateMailToAdmin($data));
 
         return ['message' => 'Updated the task info'];
     }
 
     public function taskStatus(Request $request, $id)
     {
-        
+
         $user = auth('api')->user();
-        
+
         $agent = Task::findOrFail($id);
-        
+
         $agent->update($request->all());
         $data = $agent;
-        Mail::to('bholasinghbunty@gmail.com')->send(new TaskUpdateMailToAdmin($data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new TaskUpdateMailToAdmin($data));
 
         return ['message' => 'Updated the task info'];
     }
@@ -170,40 +170,40 @@ class AgentController extends Controller
 
     public function search(){
         $users = User::all();
-        
+
         if($search = \Request::get('q')){
             $agent_task = Task::with('user')->where(function($query) use($search){
                 $query->where('id','LIKE',"%$search%")
-                        ->orWhere('title','LIKE',"%$search%"); 
-                        
-                
-                
+                        ->orWhere('title','LIKE',"%$search%");
+
+
+
             })->get();
         }
-        
+
         return response()->json([
             'agent_task' => $agent_task,
             'users' => $users,
-            
+
         ], 200);
     }
 
     public function search1(){
         $users = Auth::user();
         $user_id =$users->id;
-       
+
         if($search = \Request::get('q')){
             $agent_task = Task::with('user')->select('*')-> where('user_id',$user_id)->
                         where(function($query) use($search){
                         $query->where('id','LIKE',"%$search%")
-                        ->orWhere('title','LIKE',"%$search%"); 
+                        ->orWhere('title','LIKE',"%$search%");
              })->get();
         }
         return response()->json([
             'agent_task' => $agent_task,
             'users' => $users,
-            
+
         ], 200);
-        
+
     }
 }

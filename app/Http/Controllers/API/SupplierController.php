@@ -18,7 +18,7 @@ class SupplierController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $current_user = Auth::user();
         $users = User::all();
         $materials = Material::with('user')->get();
@@ -48,11 +48,11 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $users = Auth::user();
         $assigned_by =$users->name;
         $this->validate($request,[
-            
+
             'brand' => 'required|string',
             'quantity' => 'required|string',
             'price' => 'required|string',
@@ -71,8 +71,8 @@ class SupplierController extends Controller
             'description' => $request['description'],
             'date' => $request['date'],
             'status' => $request['status'],
-        
-            
+
+
         ]);
     }
 
@@ -85,11 +85,9 @@ class SupplierController extends Controller
     public function show($id)
     {
         $supply = Supplier::findOrFail($id);
-     
+
         return response()->json([
             'supply' => $supply,
-            
-            
         ], 200);
     }
 
@@ -106,7 +104,7 @@ class SupplierController extends Controller
         $users = Auth::user();
         $assigned_by =$users->name;
         $this->validate($request,[
-            
+
             'brand' => 'required|string',
             'quantity' => 'required|string',
             'price' => 'required|string',
@@ -136,14 +134,14 @@ class SupplierController extends Controller
         $current_user = Auth::user();
         $users = User::all();
         $materials = Material::with('user')->get();
-       
-        
+
+
         if($search = \Request::get('q')){
             $supplies = Supplier::with('user')->where(function($query) use($search){
                     $query->where('id','LIKE',"%$search%")
                         ->orWhere('brand','LIKE',"%$search%")
-                        ->orWhere('material','LIKE',"%$search%"); 
-                        
+                        ->orWhere('material','LIKE',"%$search%");
+
             })->get();
         }
         return response()->json([
@@ -162,8 +160,8 @@ class SupplierController extends Controller
             $supplies = Supplier::with('user')->where(function($query) use($search){
                     $query->where('id','LIKE',"%$search%")
                         ->orWhere('brand','LIKE',"%$search%")
-                        ->orWhere('material','LIKE',"%$search%"); 
-                        
+                        ->orWhere('material','LIKE',"%$search%");
+
             })->get();
         }
         return response()->json([

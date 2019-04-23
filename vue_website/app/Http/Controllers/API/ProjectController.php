@@ -17,9 +17,9 @@ class ProjectController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        
+
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        
+
         return Project::latest()->paginate(5);
 
     }
@@ -39,9 +39,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
-        
+    {
+
+
         $this->validate($request,[
             'title' => 'required|string|max:100',
             'deal_type' => 'required|string',
@@ -52,13 +52,13 @@ class ProjectController extends Controller
             'cover_image' => 'required',
         ]);
         $user_id = auth()->user()->id;
-        
+
         //Uploading an an Cover Image
         $name = time().'.'. explode('/',explode(':',substr($request->cover_image,0,strpos
             ($request->cover_image,';')))[1])[1];
         \Image::make($request->cover_image)->save(public_path('img/cover/'.$name));
         $request->merge(['cover_image' => $name]);
-        
+
         $project = Project::create([
             'title' => $request['title'],
             'deal_type' => $request['deal_type'],
@@ -70,7 +70,7 @@ class ProjectController extends Controller
             'user_id' => $user_id,
         ]);
         $data =$project;
-        Mail::to('bholasinghbunty@gmail.com')->send(new ProjectCreateMailToAdmin($request,$data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new ProjectCreateMailToAdmin($request,$data));
         return ['message' => 'Created the new Project'];
 
     }
@@ -133,16 +133,16 @@ class ProjectController extends Controller
     }
 
     public function search(){
-        
+
         if($search = \Request::get('q')){
             $project = Project::where(function($query) use($search){
                     $query->where('id','LIKE',"%$search%")
                     ->orWhere('location','LIKE',"%$search%")
                     ->orWhere('deal_type','LIKE',"%$search%")
-                    ->orWhere('title','LIKE',"%$search%"); 
+                    ->orWhere('title','LIKE',"%$search%");
             })->paginate(5);
         }
-        
+
         return $project;
     }
 }

@@ -89,8 +89,8 @@ class UserController extends Controller
 
             'password' => Hash::make($request['password']),
         ]);
-        $data = $user;
-        Mail::to('balajirealtywebsite@gmail.com')->send(new UserCreateMailToAdmin($data));
+        // $data = $user;
+        // Mail::to('balajirealtywebsite@gmail.com')->send(new UserCreateMailToAdmin($data));
         return ['message' => 'Created the user info'];
     }
 
@@ -139,8 +139,8 @@ class UserController extends Controller
         }
         $user->update($request->all());
 
-        $data =$user;
-        Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateProfileMailToAdmin($request,$data));
+        // $data =$user;
+        // Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateProfileMailToAdmin($request,$data));
         return ['message'=>'Succesfully Updated Profile'];
     }
 
@@ -175,8 +175,8 @@ class UserController extends Controller
 
         ]);
         $user->update($request->all());
-        $data = $user;
-        Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateMailToAdmin($data));
+        // $data = $user;
+        // Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateMailToAdmin($data));
 
         return ['message' => 'Updated the user info'];
     }

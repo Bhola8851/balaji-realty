@@ -25,7 +25,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        
+
     }
 
     /**
@@ -34,23 +34,23 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        
-        
+    {
+
+
         //$this->authorize('isAdmin');
         if(Gate::allows('isAdmin') || Gate::allows('isEmployee')){
             //User::latest()->paginate(5);
-            
+
             $users = User::all()->map(function ($user){
                 $user->isOnline = $user->isOnline();
                 return $user;
             });
-            
-           
+
+
             return response()->json([
-            
+
                 'users' => $users,
-              
+
             ], 200);
         }
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
             'gender' => 'required|string',
             'address' => 'required|string|max:191',
         ]);
-        
+
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -86,11 +86,11 @@ class UserController extends Controller
             'gender' => $request['gender'],
             'type' => $request['type'],
             'bio' => $request['bio'],
-            
+
             'password' => Hash::make($request['password']),
         ]);
         $data = $user;
-        Mail::to('bholasinghbunty@gmail.com')->send(new UserCreateMailToAdmin($data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new UserCreateMailToAdmin($data));
         return ['message' => 'Created the user info'];
     }
 
@@ -110,7 +110,7 @@ class UserController extends Controller
     public function updateProfile(Request $request){
         $user1 =auth('api')->user();
         $user = auth('api')->user();
-        $prev_data = $user1; 
+        $prev_data = $user1;
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
@@ -119,7 +119,7 @@ class UserController extends Controller
             'dob' => 'required',
             'address' => 'required|string|max:191'
         ]);
-        
+
         $currentPhoto = $user->photo;
         if($request->photo != $currentPhoto){
             $name = time().'.'. explode('/',explode(':',substr($request->photo,0,strpos
@@ -128,7 +128,7 @@ class UserController extends Controller
             $request->merge(['photo' => $name]);
 
             $userPhoto = public_path('img/profile/').$currentPhoto;
-            
+
             if(file_exists($userPhoto)){
                 @unlink($userPhoto);
             }
@@ -138,9 +138,9 @@ class UserController extends Controller
             $request->merge(['password' => Hash::make($request['password'])]);
         }
         $user->update($request->all());
-        
+
         $data =$user;
-        Mail::to('bholasinghbunty@gmail.com')->send(new UserUpdateProfileMailToAdmin($request,$data));
+        Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateProfileMailToAdmin($request,$data));
         return ['message'=>'Succesfully Updated Profile'];
     }
 
@@ -176,8 +176,8 @@ class UserController extends Controller
         ]);
         $user->update($request->all());
         $data = $user;
-        Mail::to('bholasinghbunty@gmail.com')->send(new UserUpdateMailToAdmin($data));
-        
+        Mail::to('balajirealtywebsite@gmail.com')->send(new UserUpdateMailToAdmin($data));
+
         return ['message' => 'Updated the user info'];
     }
 
@@ -198,12 +198,12 @@ class UserController extends Controller
 
     public function search(){
         if($search = \Request::get('q')){
-            
+
             $users = User::where(function($query) use($search){
                 $query->where('name','LIKE',"%$search%")
-                ->orWhere('email','LIKE',"%$search%") 
+                ->orWhere('email','LIKE',"%$search%")
                 ->orWhere('type','LIKE',"%$search%");
-            
+
         })->get();
         }
         $users = User::all()->map(function ($user){
@@ -211,9 +211,9 @@ class UserController extends Controller
             return $user;
         });
         return response()->json([
-            
+
             'users' => $users,
-            
+
         ], 200);
     }
 }

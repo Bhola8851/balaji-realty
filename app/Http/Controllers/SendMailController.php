@@ -29,7 +29,7 @@ class SendMailController extends Controller
         Mail::to('balajirealtywebsite@gmail.com')->send(new SendMail($data));
         Mail::to($data['email'])->send(new ReplyMail($data));
        /* Mail::send('pages.email_page',$data,function($message){
-            $message->to('bholasinghbunty@gmail.com','Bhola Singh')->subject('bholas mail testing');
+            $message->to('balajirealtywebsite@gmail.com','Bhola Singh')->subject('bholas mail testing');
             $message->from('bholsinghbunty@gmail.com','Bhola Singh0');
         }); */
         return back()->with('success','Thanks for contacting us!');

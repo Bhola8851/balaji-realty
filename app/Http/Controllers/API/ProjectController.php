@@ -69,8 +69,8 @@ class ProjectController extends Controller
             'cover_image' => $request['cover_image'],
             'user_id' => $user_id,
         ]);
-        $data =$project;
-        Mail::to('balajirealtywebsite@gmail.com')->send(new ProjectCreateMailToAdmin($request,$data));
+        // $data =$project;
+        // Mail::to('balajirealtywebsite@gmail.com')->send(new ProjectCreateMailToAdmin($request,$data));
         return ['message' => 'Created the new Project'];
 
     }
