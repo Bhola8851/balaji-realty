@@ -9,13 +9,12 @@ use App\Model\Supplier;
 use App\Model\Material;
 use Illuminate\Support\Facades\Auth;
 
-
 class MaterialController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -49,7 +48,7 @@ class MaterialController extends Controller
             'quantity' => 'required|string',
             'price' => 'required|string|max:10',
             'description' => 'required|string',
-            
+
         ]);
         return Material::create([
             'user_id' => $user_id,
@@ -59,8 +58,8 @@ class MaterialController extends Controller
             'price' => $request['price'],
             'description' => $request['description'],
             'status' => $request['status'],
-        
-            
+
+
         ]);
     }
 
@@ -92,7 +91,7 @@ class MaterialController extends Controller
             'quantity' => 'required|string',
             'price' => 'required|string|max:10',
             'description' => 'required|string',
-            
+
         ]);
         $material->update($request->all());
         return ['message' => 'Updated the user info'];
@@ -114,13 +113,13 @@ class MaterialController extends Controller
 
     public function search(){
         $users = Auth::user();
-        
+
         if($search = \Request::get('q')){
             $materials = Material::with('user')->where(function($query) use($search){
                     $query->where('id','LIKE',"%$search%")
                         ->orWhere('brand','LIKE',"%$search%")
-                        ->orWhere('material','LIKE',"%$search%"); 
-                        
+                        ->orWhere('material','LIKE',"%$search%");
+
             })->get();
         }
         return response()->json([

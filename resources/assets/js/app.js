@@ -56,6 +56,7 @@ let routes = [
     { path: '/material',component: require('./components/Material.vue')},
     { path: '/projects',component: require('./components/Project.vue')},
     { path: '/profile',component: require('./components/profile.vue')},
+    { path: '/snacks',component: require('./components/Snacks.vue')},
     { path: '*',component: require('./components/NotFound.vue')}
 ]
 const router = new VueRouter({
@@ -133,9 +134,9 @@ const app = new Vue({
     },
     methods:{
         searchit(){
-            console.log('appjs');   
-            Fire.$emit('searching'); 
-            
+            console.log('appjs');
+            Fire.$emit('searching');
+
         },
         printme(){
             window.print();

@@ -89,7 +89,7 @@
 
                                         <option disabled selected value>Select a Material</option>
                                         <option v-for="material in materials" :key="material.id" :value="material.material"
-                                                v-if="material.user_id == form.user_id" >{{material.material}}</option>
+                                                v-if="material.user_id == form.user_id && material.status == 'Available'" >{{material.material}}</option>
 
                                 </select>
                                 <span class="red">{{ errors.first('material') }}</span>

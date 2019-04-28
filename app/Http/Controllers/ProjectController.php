@@ -16,21 +16,21 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $project_data = Project::orderBy('created_at','desc')->paginate(6);
+        $project_data = Project::orderBy('created_at','desc')->orderBy('created_at','desc')->paginate(6);
         return view('project.index')->with('project_data',$project_data);
     }
 
     public function bungalow()
     {
         $posts = Project::orderBy('created_at','desc')->paginate(6);
-        $project_data = Project::select('*')-> where('deal_type','Bungalow')->paginate(6);
+        $project_data = Project::select('*')-> where('deal_type','Bungalow')->orderBy('created_at','desc')->paginate(6);
         return view('projectpage.bungalow')->with('project_data',$project_data);
 
     }
     public function house()
     {
         $posts = Project::orderBy('created_at','desc')->paginate(6);
-        $project_data= Project::select('*')-> where('deal_type','House')->paginate(6);
+        $project_data= Project::select('*')-> where('deal_type','House')->orderBy('created_at','desc')->paginate(6);
         return view('projectpage.house')->with('project_data',$project_data);
 
     }
@@ -38,14 +38,14 @@ class ProjectController extends Controller
     {
 
         $posts = Project::orderBy('created_at','desc')->paginate(6);
-        $project_data = Project::select('*')-> where('deal_type','Land')->paginate(6);
+        $project_data = Project::select('*')-> where('deal_type','Land')->orderBy('created_at','desc')->paginate(6);
         return view('projectpage.land')->with('project_data',$project_data);
 
     }
     public function flat()
     {
         $posts = Project::orderBy('created_at','desc')->paginate(6);
-        $project_data = Project::select('*')-> where('deal_type','Flat')->paginate(6);
+        $project_data = Project::select('*')-> where('deal_type','Flat')->orderBy('created_at','desc')->paginate(6);
         return view('projectpage.building')->with('project_data',$project_data);
 
     }

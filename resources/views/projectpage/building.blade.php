@@ -47,7 +47,7 @@
                                             <div class="col-md-4">
                                                 <div class="card" id="panel" >
                                                     <div class="hvrbox">
-                                                        <img class="img-fluid menu-thumbnails card-img-top" src="{{ asset('img/cover/'.$item->cover_image) }}"/>
+                                                        <img class="img-fluid menu-thumbnails card-img-top" src="{{ asset('./storage/cover/'.$item->cover_image) }}"/>
                                                         <div class="hvrbox-layer_top">
                                                             <div class="hvrbox-text">{{$item -> deal_type}}<br/><a href="/project/{{$item -> id}}" class="btn btn-default" id="image_button">View Detail</a></div>
 

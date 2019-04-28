@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('isAdmin',function($user){
             return $user->type === 'Admin';
         });
-        
+
         $gate->define('isEmployee',function($user){
             return $user->type === 'Employee';
         });
@@ -46,6 +46,10 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('isMyAccount',function($user,$profileUser){
             return $user->id === $profileUser->id;
+        });
+
+        $gate->define('isManager',function($user){
+            return $user->type === 'Manager';
         });
 
         Passport::routes();

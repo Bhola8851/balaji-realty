@@ -16,7 +16,8 @@
             <div class="col-md-12 mt-3">
                 <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header text-white" style="background-image:url('./img/darkbg.jpg')">
+                <!-- <div class="widget-user-header text-white" style="background-image:url('./img/darkbg.jpg')"> -->
+                <div class="widget-user-header text-white" v-bind:style="{backgroundImage:'url('+getProfilePhoto()+')'}">
                     <h3 class="widget-user-username">{{this.form.name}}</h3>
                     <h5 class="widget-user-desc">{{this.form.type}}</h5>
                 </div>
@@ -55,30 +56,23 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active show" href="#activity" data-toggle="tab">Activity</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                <li v-if="!$gate.isManager()" class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Activity</a></li>
+                                <li class="nav-item"><a class="nav-link show active" href="#settings" data-toggle="tab" show active>Settings</a></li>
                         </ul>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
                             <!-- Activity Tab -->
-                            <div class="tab-pane active show" id="activity">
+                            <div class="tab-pane" id="activity" v-if="!$gate.isManager()">
                                 <h3 class="text-center">Completed Task</h3>
 
                                  <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Completed Task</h3>
-
-                                        <div class="card-tools">
-
-                                        </div>
-                                    </div>
-
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0">
                                         <form @submit.prevent="updateUser()">
                                         <table class="table table-hover">
-                                            <tbody><tr>
+                                            <tbody>
+                                            <tr>
                                                 <th>Task ID</th>
                                                 <th>Title</th>
                                                 <th>Agent</th>
@@ -89,7 +83,8 @@
                                                 <th>Status</th>
                                             </tr>
 
-                                            <tr v-for="task in agent_task" :key="task.id" v-if="task.status = 'Completed'">
+                                            <tr v-for="task in agent_task" :key="task.id"  v-if="task.status == 'Completed'">
+
                                                 <td>{{task.id}}</td>
                                                 <td><a href="#" @click="showModal(task.id)">{{task.title}}</a></td>
                                                 <td>{{task.user.name}}</td>
@@ -98,6 +93,7 @@
                                                 <td>{{task.description}}</td>
                                                 <td>{{task.date | myDateTime()}}</td>
                                                 <td><span  class="badge badge-primary ">{{task.status}}</span></td>
+
                                             </tr>
 
                                         </tbody>
@@ -111,7 +107,7 @@
                                     </div>
                             </div>
                             <!-- Setting Tab -->
-                            <div class="tab-pane" id="settings">
+                            <div class="tab-pane show active" id="settings">
                                 <form class="form-horizontal">
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Name<i class="fas fa-asterisk red"></i></label>
@@ -145,9 +141,9 @@
                                     <!--<input type="dob" v-model="form.dob" class="form-control" id="inputDob" placeholder="Date of Birth"  :class="{ 'is-invalid': form.errors.has('dob') }">
                                      <has-error :form="form" field="dob"></has-error>-->
                                         <label style="padding-right: 5px;">{{this.form.dob|myDate}}</label>
-                                        <datetime @change="getBirthDay"  type="date" v-model="form.dob" name="dob" class="fa fa-calendar-alt blue"
+                                        <datetime  type="date" v-model="form.dob" name="dob" class="fa fa-calendar-alt blue"
                                         :class="{ 'is-invalid': form.errors.has('dob') }" v-validate="'required'"
-                                        :max-datetime="max_date"></datetime>
+                                        :max-datetime="dob" :min-datetime="min_date"></datetime>
                                         <span class="red">{{ errors.first('dob') }}</span>
 
                                         <has-error :form="form" field="dob"></has-error>
@@ -274,16 +270,16 @@
         data(){
             return {
                 current_date1 : Date.now(),
-
                 dob : '',
                 max_date : '2001-04-26T12:58Z',
+                min_date : '',
                 current_date : new Date("2015-03-25T12:00:00Z"),
                 projects : [],
                 count : [],
                 agent_task : [],
                 users :[],
                 task : [],
-                 form: new Form({
+                form: new Form({
                     id:'',
                     name : '',
                     email: '',
@@ -297,28 +293,35 @@
                 })
             }
         },
-        watch: {
-        cool() {
-            this.getBirthDay();
-        }
-        },
-        mounted() {
-            console.log('Component mounted.')
-            this.getBirthDay();
-        },
+
+
         methods:{
-            getBirthDay(){
-                if(new Date() == new Date(this.form.dob)){
-                    console.log('success');
-                }
-                else{
-                    console.log('134');
-                    this.form.dob = this.dob;
-                }
-            },
             getProfilePhoto(){
-                let photo = (this.form.photo.length > 200) ? this.form.photo : "./img/profile/"+ this.form.photo ;
+                let photo = (this.form.photo.length > 200) ? this.form.photo : "./storage/profile/"+ this.form.photo ;
+
+                var required_years = new Date(Date.now());
+                var myBirthday = new Date(this.form.dob);
+                var required_years1 = required_years.getFullYear() - myBirthday.getFullYear();
+                required_years.setFullYear(required_years.getFullYear() - required_years1);
+                var years = new Date(required_years).toISOString();
+                this.dob = years;
+
+                var min_date = new Date(Date.now());
+                min_date.setFullYear(min_date.getFullYear() - 90);
+                this.min_date = new Date(min_date).toISOString();
+
                 return photo;
+                // var now = new Date();
+                // var difference = now - myBirthday;
+                // var days = difference / 1000 / 60 / 60 / 24;
+                //console.log(parseInt(days));
+
+                //now.setDate(now.getDate() - days);
+                //console.log(required_years);
+                //console.log(myBirthday.getFullYear());
+                // console.log(required_years);
+                // var years = new Date(now).toISOString();
+                // console.log(years);
             },
             loadTasks(){
                 //it will fetch data into data and then to the users object

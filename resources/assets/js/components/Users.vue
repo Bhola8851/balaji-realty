@@ -45,10 +45,10 @@
                         <a href="#" @click="editModal(user)">
                             <i class="fa fa-edit blue"></i>
                         </a>
-                        /
+                        <!-- /
                         <a href="#" @click="deleteUser(user.id)">
                             <i class="fa fa-trash red"></i>
-                        </a>
+                        </a> -->
                     </td>
                   </tr>
 
@@ -83,7 +83,7 @@
                                 <label>Username<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.name" type="text" name="name"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('name') }"
-                                    v-validate="'required|alpha'">
+                                    v-validate="'required'">
                                 <span class="red" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                                 <has-error :form="form" field="name"></has-error>
                             </div>
@@ -156,12 +156,13 @@
                                 <label>User Role<i class="fas fa-asterisk red"></i></label>
                                 <select v-model="form.type" id="type" name="type"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('type') }"
-                                    v-validate="'required|included:Admin,Employee,Agent,Supplier'">
+                                    v-validate="'required|included:Admin,Employee,Agent,Supplier,Manager'">
 
                                     <option value="Admin">Admin</option>
                                     <option value="Employee">Employee</option>
                                     <option value="Agent">Agent</option>
                                     <option value="Supplier">Supplier</option>
+                                    <option value="Manager">Manager</option>
                                 </select>
                                 <span class="red" v-show="errors.has('type')">{{ errors.first('type') }}</span>
                                 <has-error :form="form" field="type"></has-error>
@@ -328,7 +329,7 @@
                 }
             },
             getProfilePhoto(){
-                let photo ="./img/profile/"+ this.user.photo ;
+                let photo ="./storage/profile/"+ this.user.photo ;
                 return photo;
             },
 
@@ -407,7 +408,7 @@
                     $('#addNew').modal('hide');
                     $('#updateStatus').modal('hide');
                     sweetAlert.fire(
-                        'Upadted!',
+                        'Updated!',
                         'Information has been Upadted.',
                         'success'
                         )

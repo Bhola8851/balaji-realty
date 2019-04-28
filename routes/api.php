@@ -24,7 +24,7 @@ Route::apiResources(['agents' => 'API\AgentController']);
 //Route::group(['prefix'=>'users'],function(){
 //    Route::apiResource('{user}/tasks','TaskController');
 //});
-Route::apiResource('tasks','TaskController');
+//Route::apiResource('tasks','TaskController');
 Route::apiResource('materials','API\MaterialController');
 
 Route::get('findUser','API\UserController@search');
@@ -41,5 +41,13 @@ Route::put('profile','API\UserController@updateProfile');
 Route::get('task','API\AgentController@task');
 Route::get('showtask','API\AgentController@showTask');
 Route::put('taskStatus','API\AgentController@taskStatus');
+
+////////SNACKS API
+Route::apiResource('/customers','snacks_api\CustomerController');
+
+Route::group(['prefix'=>'customers'],function(){
+    Route::apiResource('/{customer}/materials','snacks_api\MaterialController');
+});
+
 
 

@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('deal_type');
             $table->string('title');
-            $table->string('price',5);
+            $table->string('price');
             $table->string('location');
             $table->string('address');
             $table->mediumText('description');

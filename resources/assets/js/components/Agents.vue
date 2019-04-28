@@ -190,7 +190,7 @@
                                 <label>Title<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.title" type="text" name="title"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('title') }"
-                                    v-validate="'required|alpha'">
+                                    v-validate="'required'">
                                 <span class="red">{{ errors.first('title') }}</span>
                                 <has-error :form="form" field="title"></has-error>
                             </div>
@@ -231,10 +231,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Customer Contact<i class="fas fa-asterisk red"></i></label>
+                                <label>Customer Contact</label>
                                 <input v-model="form.customer_phone" type="text" name="customer_phone"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('customer_phone') }"
-                                    v-validate="'required|digits:10'">
+                                    v-validate="'digits:10'">
                                 <span class="red">{{ errors.first('customer_phone') }}</span>
                                 <has-error :form="form" field="customer_phone"></has-error>
                             </div>
@@ -370,13 +370,9 @@
         },
         methods: {
          loadTasks(){
-
-
-                    //it will fetch data into data and then to the users object
-                    axios.get("api/agents")
-                    .then(response => {this.agent_task = response.data.agent_task,this.users = response.data.users});
-
-
+                //it will fetch data into data and then to the users object
+                axios.get("api/agents")
+                .then(response => {this.agent_task = response.data.agent_task,this.users = response.data.users});
             },
             createTask(){
                 this.$validator.validateAll()

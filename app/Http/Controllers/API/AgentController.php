@@ -58,7 +58,7 @@ class AgentController extends Controller
             'title' => 'required',
             'description' => 'required',
             'address' => 'required',
-            'customer_phone' => 'required',
+
             'date' => 'required',
             'address' => 'required|string|max:191'
         ]);
@@ -162,9 +162,11 @@ class AgentController extends Controller
      */
     public function destroy($id)
     {
+
         $agent = Task::findOrFail($id);
         //delete the userer
         $agent->delete();
+
         return ['message' => 'Task deleted'];
     }
 

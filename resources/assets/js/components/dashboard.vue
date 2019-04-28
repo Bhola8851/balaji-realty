@@ -2,7 +2,7 @@
     <div class="container">
         <!--Profile Table-->
         <table class="table table-bordered mt-3">
-                        
+
             <tr>
                 <th>Profile Picture</th>
                 <td>
@@ -38,7 +38,7 @@
             <tr>
                 <th>Address</th>
                 <td>{{user.address}}</td>
-                
+
             </tr>
         </table>
     </div>
@@ -46,7 +46,7 @@
 
 <script>
     export default {
-        
+
         data(){
             return {
                 user : {},
@@ -66,15 +66,15 @@
         },
         methods:{
             getProfilePhoto(){
-                let photo ="./img/profile/"+ this.user.photo ;
+                let photo ="./storage/profile/"+ this.user.photo ;
                 return photo;
             },
         },
         created() {
              axios.get("api/profile")
             .then(response => {this.form.fill(response.data.user),this.user=response.data.user});
-       
-            
+
+
         }
     }
 </script>

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->mediumText('bio')->nullable();
             $table->string('photo')->default('profile picture');
             $table->string('address')->nullable();
-            $table->string('phone',10)->nullable();;
+            $table->string('phone')->nullable();;
             $table->string('dob')->nullable();;
             $table->string('gender')->nullable();
             $table->string('password');

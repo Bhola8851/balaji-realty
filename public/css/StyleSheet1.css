@@ -1,10 +1,10 @@
 ﻿
 body {
-    
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:#ffffff;
     background:#222 !important;
-  
+
 }
 
 html,body{
@@ -14,8 +14,8 @@ html,body{
 
 .pageContentWrapper{
     margin-bottom:150px;/* Height of footer*/
-    
-} 
+
+}
 
 .footer{
     position: absolute;
@@ -27,7 +27,7 @@ html,body{
     padding-top:30px;
     padding-bottom:15px;
     color:#fff;
-      
+
 }
 .site-footer{
     background-color: #222;
@@ -62,7 +62,7 @@ html{
     box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
     border-radius: 35px 35px 35px 35px;
     -webkit-border-radius: 35px 35px 35px 35px;
-    
+
 }
 .content h2 {
     text-align: center;
@@ -91,7 +91,7 @@ html{
 .department {
     margin-right: 0%;
     margin-left: 10%;
-    
+
 
 }
 
@@ -118,7 +118,7 @@ html{
 
 #footer {
     padding: 10px;
-   
+
 }
 
 
@@ -131,7 +131,7 @@ html{
 }
 
 .footer-nav{
-    
+
     text-align:right;
     list-style:none;
 }
@@ -227,14 +227,14 @@ html{
 
 .icons li{
     display: inline;
-    
+
 }
 
 .icons li a{
-    
+
     color:#fff;
     list-style: none;
-    
+
 }
 
 #image_button{
@@ -251,7 +251,7 @@ html{
     padding: 30px 30px;
     margin-top: 10vh;
     width: 100%;
-    
+
     -webkit-box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
     box-shadow: -1px 2px 11px 6px rgba(0,0,0,0.75);
     border-radius: 35px 35px 35px 35px;
@@ -265,7 +265,7 @@ html{
 
 .img{
     border-radius:10px !important;
-    
+
 }
 
 .label{
@@ -289,6 +289,42 @@ html{
     min-height: 80px;
 }
 
+.nav-link{
+    color: #fff !important;
+}
+
+.navbar-brand{
+    font-size: 30px !important;
+}
+
+#nav-dropdown{
+    background: #222 !important;
+}
+
+#nav-dropdown a:hover{
+    background: #1abc9c !important;
+}
+
+#nav-dropdown .dropdown-item{
+    color: #fff !important;
+    background: transparent !important;
+}
+
+#navbarSupportedContent{
+    background: #222 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+
+}
+#navbarSupportedContent .green li:hover{
+    background : #1abc9c;
+
+}
+#navbarContainer{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width : 200% !important;
+}
 #main {
     min-height:100%;
     overflow: auto;
@@ -296,7 +332,7 @@ html{
 }
 
 #map {
-    
+
     height: 500px;
     margin: 0 auto;
     width: 100%;
@@ -310,7 +346,7 @@ html{
     background-image: url('/images/blog-1.jpg');
     background-size: cover;
     background-attachment: fixed;
-    height: 250px; 
+    height: 250px;
 }
 #panel{
     background-color:transparent;
@@ -318,14 +354,14 @@ html{
     border-color:#fff;
 }
 #panel{
-    
-    
+
+
     box-shadow:none !important;
 }
 
 select{
     color: #000000;
-    
+
 }
 #panel-heading {
     background: #222;
@@ -396,7 +432,7 @@ table.table-bordered tr td{
 }
 #welcome-image{
     height: 100%;
-    
+
 }
 .what{
     width: 100% !important;

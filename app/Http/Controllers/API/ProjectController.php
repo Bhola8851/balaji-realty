@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserUpdateMailToAdmin;
 use App\Mail\ProjectCreateMailToAdmin;
+use Illuminate\Support\Facades\Input;
 
 class ProjectController extends Controller
 {
@@ -52,12 +53,15 @@ class ProjectController extends Controller
             'cover_image' => 'required',
         ]);
         $user_id = auth()->user()->id;
+        $cover_image = $request->cover_image;
 
         //Uploading an an Cover Image
+
         $name = time().'.'. explode('/',explode(':',substr($request->cover_image,0,strpos
             ($request->cover_image,';')))[1])[1];
-        \Image::make($request->cover_image)->save(public_path('img/cover/'.$name));
+        \Image::make($request->cover_image)->save(storage_path('app/public/cover/'.$name));
         $request->merge(['cover_image' => $name]);
+
 
         $project = Project::create([
             'title' => $request['title'],
@@ -96,7 +100,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project = Project::findOrFail($id);
+
+        $project = Project::findOrFail($request->id);
 
         $this->validate($request,[
             'title' => 'required|string|max:100',
@@ -105,13 +110,17 @@ class ProjectController extends Controller
             'location' => 'required|string|max:100',
             'address' => 'required|string',
             'description' => 'required|string|max:191',
-            'cover_image' => 'required',
+
         ]);
+        //return $project->cover_image;
         //Uploading an an Cover Image
-        $name = time().'.'. explode('/',explode(':',substr($request->cover_image,0,strpos
+        $currentPhoto = $project->cover_image;
+        if($request->cover_image != $currentPhoto){
+            $name = time().'.'. explode('/',explode(':',substr($request->cover_image,0,strpos
             ($request->cover_image,';')))[1])[1];
-        \Image::make($request->cover_image)->save(public_path('img/cover/'.$name));
-        $request->merge(['cover_image' => $name]);
+            \Image::make($request->cover_image)->save(storage_path('app/public/cover/'.$name));
+            $request->merge(['cover_image' => $name]);
+        }
 
         $project->update($request->all());
         return ['message' => 'Updated the project info'];

@@ -79,7 +79,7 @@
                                 <label>Title<i class="fas fa-asterisk red"></i></label>
                                 <input v-model="form.title" type="text" name="title"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('title') }"
-                                    v-validate="'required|alpha'">
+                                    v-validate="'required'">
                                     <span class="red">{{ errors.first('title') }}</span>
                                 <has-error :form="form" field="title"></has-error>
                             </div>
@@ -240,13 +240,13 @@
         },
         methods: {
             getProfilePhoto(){
-                let cover_image = (this.form.cover_image.length > 200) ? this.form.cover_image : "./img/cover/"+ this.form.cover_image ;
+                let cover_image = (this.form.cover_image.length > 200) ? this.form.cover_image : "./storage/cover/"+ this.form.cover_image ;
                 let image1 = this.form.cover_image;
                 return cover_image;
 
             },
             getshowPhoto(){
-                let cover_image ="./img/cover/"+ this.project_data.cover_image ;
+                let cover_image ="./storage/cover/"+ this.project_data.cover_image ;
                 return cover_image;
             },
 

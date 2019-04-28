@@ -24,11 +24,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-      
+
     </ul>
 
     <!-- SEARCH FORM -->
-    
+
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" @keyup.enter="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -41,9 +41,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </div>
       </div>
-    
 
-    
+
+
   </nav>
   <!-- /.navbar -->
 
@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="img/profile/{{Auth::user()->photo}}" class="img-circle elevation-2 img-fluid" style="height:10vh;width:10vh" alt="User Image">
+          <img src="./storage/profile/{{Auth::user()->photo}}" class="img-circle elevation-2 img-fluid" style="height:10vh;width:10vh" alt="User Image">
         </div>
         <div class="info">
           <a href="profile" class="d-block">
@@ -84,7 +84,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          
+
+          @if(Gate::check('isAdmin') || Gate::check('isManager'))
+          <li class="nav-item">
+            <router-link to="/snacks" class="nav-link">
+                <i class="fas fa-users nav-icon "></i>
+                <p>
+                    Manage Customers
+                </p>
+            </router-link>
+          </li>
+          @endif
+          @if(!Gate::check('isManager'))
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog green"></i>
@@ -95,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                
+
                 @can('isAdmin')
                   <router-link to="/users" class="nav-link">
                     <i class="fas fa-users nav-icon "></i>
@@ -134,15 +145,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <i class="fa fa-envelope nav-icon "></i>
                     <p>Supplies</p>
                   </router-link>
-                  
+
                   <router-link to="/material" class="nav-link">
                     <i class="fa fa-tags nav-icon "></i>
                     <p>Create Material</p>
                   </router-link>
                 @endcan
               </li>
-              
+
             </ul>
+            @endif
             <li class="nav-item">
               <router-link to="/profile" class="nav-link">
                 <i class="nav-icon fas fa-user orange"></i>
@@ -178,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </form>
             </li>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -188,12 +200,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
+
 
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        
+
         @yield('content')
         <router-view></router-view>
         <vue-progress-bar></vue-progress-bar>
@@ -204,7 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   <!-- /.content-wrapper -->
 
-  
+
 
   <!-- Main Footer -->
   <footer class="main-footer">

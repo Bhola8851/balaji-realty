@@ -110,7 +110,7 @@ class UserController extends Controller
     public function updateProfile(Request $request){
         $user1 =auth('api')->user();
         $user = auth('api')->user();
-        $prev_data = $user1;
+        //$prev_data = $user1;
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
@@ -124,10 +124,10 @@ class UserController extends Controller
         if($request->photo != $currentPhoto){
             $name = time().'.'. explode('/',explode(':',substr($request->photo,0,strpos
                 ($request->photo,';')))[1])[1];
-            \Image::make($request->photo)->save(public_path('img/profile/'.$name));
+            \Image::make($request->photo)->save(storage_path('app/public/profile/'.$name));
             $request->merge(['photo' => $name]);
 
-            $userPhoto = public_path('img/profile/').$currentPhoto;
+            $userPhoto = storage_path('app/public/profile/').$currentPhoto;
 
             if(file_exists($userPhoto)){
                 @unlink($userPhoto);
@@ -206,7 +206,7 @@ class UserController extends Controller
 
         })->get();
         }
-        $users = User::all()->map(function ($user){
+        $users1 = User::all()->map(function ($user){
             $user->isOnline = $user->isOnline();
             return $user;
         });

@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-6  mt-4">
             <!-- For image--><br><br>
-            <img class="img-responsive img-fluid img-rounded" src="{{asset('img/cover/'.$project_data->cover_image)}}" alt="abc"  style="height:50vh; width:50vh;">
+            <img class="img-responsive img-fluid img-rounded" src="{{asset('./storage/cover/'.$project_data->cover_image)}}" alt="abc"  style="height:50vh; width:50vh;">
 
         </div>
         <!-- for Data -->
